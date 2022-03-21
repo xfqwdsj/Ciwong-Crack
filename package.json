@@ -1,0 +1,18 @@
+{
+  "name": "ciwong-newspaper-crack",
+  "version": "0.1.0",
+  "description": "习习向上破解",
+  "main": "script.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "frida-compile script.ts -o _script.js -c",
+    "watch": "frida-compile script.ts -o _script.js -w",
+    "launch": "frida -U -f com.ciwong.newspaper --no-pause -l _script.js",
+    "buildAndLaunch": "npm run build && npm run launch"
+  },
+  "devDependencies": {
+    "@types/frida-gum": "^17.1.0",
+    "@types/node": "^16.4.8",
+    "frida-compile": "^10.0.0"
+  }
+}

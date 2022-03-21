@@ -1,0 +1,26 @@
+{
+    "items": [
+        {
+            "templateSettings": {},
+            "scores": [],
+            "questions": [
+                {
+                    "trunk": {
+                        "body": "题目"
+                    },
+                    "options": [
+                        {
+                            "isAnswer": 1,
+                            "value": [
+                                {
+                                    "body": "答案"
+                                }
+                            ]
+                        }
+                    ],
+                    "children": []
+                }
+            ]
+        }
+    ]
+}
