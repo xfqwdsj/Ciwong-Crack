@@ -1,7 +1,7 @@
 {
   "name": "ciwong-newspaper-crack",
-  "version": "0.1.0",
-  "description": "习习向上破解",
+  "version": "0.1.1",
+  "description": "",
   "main": "script.ts",
   "scripts": {
     "prepare": "npm run build",

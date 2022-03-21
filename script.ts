@@ -1,16 +1,19 @@
 Java.perform(() => {
     const interval = setInterval(() => {
-        try {
-            const ExamInfoParser = Java.use(
-                "com.ciwong.epaper.modules.epaper.a.b$4"
-            );
-            const WorkContents = Java.use(
-                "com.ciwong.epaper.modules.me.bean.WorkContents"
-            );
-            clearInterval(interval);
+        const ExamInfoParser = Java.use(
+            "com.ciwong.epaper.modules.epaper.a.b$4"
+        );
+        const WorkContents = Java.use(
+            "com.ciwong.epaper.modules.me.bean.WorkContents"
+        );
+        clearInterval(interval);
 
-            ExamInfoParser.success.implementation = function (info: string) {
-                function process(o: any) {
+        ExamInfoParser.success.implementation = function (info: string) {
+            if (
+                this.b.value.getTypeName() ===
+                "com.ciwong.epaper.modules.epaper.bean.ListenspeakExam"
+            ) {
+                const process = (o: any) => {
                     const object = JSON.parse(JSON.stringify(o));
                     if (object.children.length === 0) {
                         let answers = "\n\n\n";
@@ -32,9 +35,9 @@ Java.perform(() => {
                             ),
                         });
                     }
-                }
+                };
 
-                function ciwong(str: string) {
+                const ciwong = (str: string) => {
                     const object = JSON.parse(str);
                     return Object.assign(object, {
                         items: object.items.map((item: any) =>
@@ -45,19 +48,18 @@ Java.perform(() => {
                             })
                         ),
                     });
-                }
+                };
 
                 return ExamInfoParser.success.call(
                     this,
                     JSON.stringify(ciwong(info))
                 );
-            };
+            }
+            return ExamInfoParser.success.call(this, info);
+        };
 
-            WorkContents.getExamMode.implementation = function () {
-                return 0;
-            };
-        } catch (e) {
-            console.error(e);
-        }
+        WorkContents.getExamMode.implementation = function () {
+            return 0;
+        };
     }, 200);
 });
